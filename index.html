@@ -74,7 +74,7 @@
         .en-title {
             font-size: 11px;
             color: var(--sage-green);
-            letter-spacing: 3.5px;
+            letter-spacing: 3px;
             text-transform: uppercase;
             font-weight: 500;
             margin-bottom: 8px;
@@ -202,10 +202,10 @@
         }
 
         .seat-highlight-box {
-            background: linear-gradient(180deg, #FFFFFF, var(--sage-mist, #F7FAF8));
+            background: linear-gradient(180deg, #FFFFFF, #F7FAF8);
             border: 1.5px solid var(--gold-accent);
             border-radius: 16px;
-            padding: 22px 16px;
+            padding: 24px 16px;
             margin-bottom: 16px;
             box-shadow: 0 6px 18px rgba(184, 151, 88, 0.12);
         }
@@ -216,7 +216,7 @@
             color: var(--gold-accent);
             text-transform: uppercase;
             font-weight: 600;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
         }
 
         .table-display {
@@ -225,13 +225,6 @@
             color: var(--forest-deep);
             letter-spacing: 2px;
             margin: 4px 0;
-        }
-
-        .table-desc {
-            font-size: 13px;
-            color: var(--sage-green);
-            font-weight: 500;
-            margin-top: 4px;
         }
 
         .seat-location-hint {
@@ -292,7 +285,7 @@
 
     <!-- 查询卡片主体 -->
     <div class="main-card">
-        <div class="en-title">WELCOME TO OUR CELEBRATION DINNER</div>
+        <div class="en-title">WELCOME TO OUR POST-WEDDING CELEBRATION</div>
         <div class="header-title-box">
             <svg class="branch-icon" viewBox="0 0 36 18">
                 <path d="M0 12 C10 12 20 6 36 2 C28 6 18 14 0 12 Z"/>
@@ -317,16 +310,15 @@
             <button class="search-btn" onclick="querySeat()">查询我的座位</button>
         </div>
 
-        <!-- 查询成功展示区 -->
+        <!-- 查询成功展示区 (仅显示桌号) -->
         <div id="resultBox" class="result-container">
             <div class="guest-greeting">尊敬的 <span id="resGuestName" class="guest-name-tag"></span> 贵宾：</div>
             <div class="seat-highlight-box">
                 <div class="seat-badge">YOUR SEAT</div>
                 <div class="table-display">您在 <span id="resTableNum" style="color:var(--gold-accent);">--</span> 号桌</div>
-                <div id="resTableName" class="table-desc"></div>
             </div>
-            <div id="resLocationHint" class="seat-location-hint">
-                📍 宴会厅内已设置相应桌号立牌，入席若有疑问可联系迎宾人员。
+            <div class="seat-location-hint">
+                📍 宴会厅内已设置相应桌号立牌，入席若有疑问可联系现场迎宾人员。
             </div>
         </div>
 
@@ -342,28 +334,28 @@
     </div>
 
     <script>
-        // 20桌数据名单（每桌10人，随时替换为你真实的名单）
+        // 20桌数据名单（每桌10人，替换这里的姓名即可）
         const seatingData = [
-            { table: "01", name: "主桌 (左侧)", location: "靠主舞台左侧首排", guests: ["新郎父母", "新郎祖父母", "至亲叔舅", "至亲姑姨", "至亲长辈A", "至亲长辈B", "至亲长辈C", "至亲长辈D", "伴郎代表", "主宾代表A"] },
-            { table: "02", name: "主桌 (右侧)", location: "靠主舞台右侧首排", guests: ["新娘父母", "新娘祖父母", "至亲舅舅", "至亲阿姨", "至亲长辈E", "至亲长辈F", "至亲长辈G", "至亲长辈H", "伴娘代表", "主宾代表B"] },
-            { table: "03", name: "长辈亲友桌 01", location: "靠近仪式T台左侧第2排", guests: ["王大爷", "李大妈", "王伯伯", "张婶婶", "赵叔叔", "孙阿姨", "周伯父", "吴伯母", "郑爷爷", "钱奶奶"] },
-            { table: "04", name: "长辈亲友桌 02", location: "靠近仪式T台右侧第2排", guests: ["陈大伯", "林阿姨", "黄舅舅", "刘舅妈", "何叔叔", "许姑姑", "韩伯伯", "邓阿姨", "冯爷爷", "宋奶奶"] },
-            { table: "05", name: "至亲堂表桌 01", location: "左侧第3排区域", guests: ["堂哥A", "堂嫂A", "堂弟A", "堂妹A", "表哥A", "表嫂A", "表弟A", "表妹A", "侄子A", "侄女A"] },
-            { table: "06", name: "至亲堂表桌 02", location: "右侧第3排区域", guests: ["表哥B", "表嫂B", "表姐B", "表妹B", "堂弟B", "堂妹B", "舅表兄", "舅表妹", "外甥A", "外甥女A"] },
-            { table: "07", name: "亲友来宾桌 01", location: "左侧中区", guests: ["张建国", "李秀英", "王志强", "刘海燕", "陈勇", "杨丽", "赵明", "孙敏", "周涛", "吴静"] },
-            { table: "08", name: "亲友来宾桌 02", location: "右侧中区", guests: ["黄国强", "徐红", "朱文", "胡秀兰", "高飞", "林芳", "马伟", "何玉英", "罗斌", "郭萍"] },
-            { table: "09", name: "发小死党桌", location: "靠近甜品台旁", guests: ["李雷", "韩梅梅", "刘星", "夏雨", "林冲", "武松", "鲁智深", "杨志", "花荣", "柴进"] },
-            { table: "10", name: "闺蜜挚友桌", location: "靠近拍照打卡区", guests: ["沈佳宜", "胡一菲", "陈美嘉", "唐悠悠", "林宛瑜", "顾里", "林萧", "南湘", "唐宛如", "甄嬛"] },
-            { table: "11", name: "大学同窗桌 01", location: "左侧后区", guests: ["张伟", "李强", "王磊", "刘洋", "陈杰", "杨洋", "赵杰", "孙强", "周杰", "吴磊"] },
-            { table: "12", name: "大学同窗桌 02", location: "右侧后区", guests: ["王芳", "李娜", "张敏", "刘艳", "陈晨", "杨静", "赵婷", "孙莉", "周丽", "吴英"] },
-            { table: "13", name: "校友青年桌 01", location: "左后侧靠窗", guests: ["Alex", "Bob", "Charlie", "David", "Eric", "Frank", "George", "Henry", "Ian", "Jack"] },
-            { table: "14", name: "校友青年桌 02", location: "右后侧靠窗", guests: ["Alice", "Bella", "Chloe", "Daisy", "Emily", "Fiona", "Grace", "Helen", "Ivy", "Judy"] },
-            { table: "15", name: "同侪伙伴桌 01", location: "左侧后排", guests: ["同事A", "同事B", "同事C", "同事D", "同事E", "同事F", "同事G", "同事H", "同事I", "同事J"] },
-            { table: "16", name: "同侪伙伴桌 02", location: "右侧后排", guests: ["同事K", "同事L", "同事M", "同事N", "同事O", "同事P", "同事Q", "同事R", "同事S", "同事T"] },
-            { table: "17", name: "挚友嘉宾桌 01", location: "临近主入口左侧", guests: ["好友A", "好友B", "好友C", "好友D", "好友E", "好友F", "好友G", "好友H", "好友I", "好友J"] },
-            { table: "18", name: "挚友嘉宾桌 02", location: "临近主入口右侧", guests: ["好友K", "好友L", "好友M", "好友N", "好友O", "好友P", "好友Q", "好友R", "好友S", "好友T"] },
-            { table: "19", name: "预留机动桌", location: "大厅右后备用席", guests: ["机动贵宾1", "机动贵宾2", "机动贵宾3", "机动贵宾4", "机动贵宾5", "机动贵宾6", "机动贵宾7", "机动贵宾8", "机动贵宾9", "机动贵宾10"] },
-            { table: "20", name: "工作服务团队", location: "音控台后侧", guests: ["主摄影师", "副摄影师", "摄像师A", "摄像师B", "跟妆师", "司仪", "现场督导", "音响师", "灯光师", "宴会统筹"] }
+            { table: "01", guests: ["新郎父母", "新郎祖父母", "至亲叔舅", "至亲姑姨", "至亲长辈A", "至亲长辈B", "至亲长辈C", "至亲长辈D", "伴郎代表", "主宾代表A"] },
+            { table: "02", guests: ["新娘父母", "新娘祖父母", "至亲舅舅", "至亲阿姨", "至亲长辈E", "至亲长辈F", "至亲长辈G", "至亲长辈H", "伴娘代表", "主宾代表B"] },
+            { table: "03", guests: ["王大爷", "李大妈", "王伯伯", "张婶婶", "赵叔叔", "孙阿姨", "周伯父", "吴伯母", "郑爷爷", "钱奶奶"] },
+            { table: "04", guests: ["陈大伯", "林阿姨", "黄舅舅", "刘舅妈", "何叔叔", "许姑姑", "韩伯伯", "邓阿姨", "冯爷爷", "宋奶奶"] },
+            { table: "05", guests: ["堂哥A", "堂嫂A", "堂弟A", "堂妹A", "表哥A", "表嫂A", "表弟A", "表妹A", "侄子A", "侄女A"] },
+            { table: "06", guests: ["表哥B", "表嫂B", "表姐B", "表妹B", "堂弟B", "堂妹B", "舅表兄", "舅表妹", "外甥A", "外甥女A"] },
+            { table: "07", guests: ["张建国", "李秀英", "王志强", "刘海燕", "陈勇", "杨丽", "赵明", "孙敏", "周涛", "吴静"] },
+            { table: "08", guests: ["黄国强", "徐红", "朱文", "胡秀兰", "高飞", "林芳", "马伟", "何玉英", "罗斌", "郭萍"] },
+            { table: "09", guests: ["李雷", "韩梅梅", "刘星", "夏雨", "林冲", "武松", "鲁智深", "杨志", "花荣", "柴进"] },
+            { table: "10", guests: ["沈佳宜", "胡一菲", "陈美嘉", "唐悠悠", "林宛瑜", "顾里", "林萧", "南湘", "唐宛如", "甄嬛"] },
+            { table: "11", guests: ["张伟", "李强", "王磊", "刘洋", "陈杰", "杨洋", "赵杰", "孙强", "周杰", "吴磊"] },
+            { table: "12", guests: ["王芳", "李娜", "张敏", "刘艳", "陈晨", "杨静", "赵婷", "孙莉", "周丽", "吴英"] },
+            { table: "13", guests: ["Alex", "Bob", "Charlie", "David", "Eric", "Frank", "George", "Henry", "Ian", "Jack"] },
+            { table: "14", guests: ["Alice", "Bella", "Chloe", "Daisy", "Emily", "Fiona", "Grace", "Helen", "Ivy", "Judy"] },
+            { table: "15", guests: ["同事A", "同事B", "同事C", "同事D", "同事E", "同事F", "同事G", "同事H", "同事I", "同事J"] },
+            { table: "16", guests: ["同事K", "同事L", "同事M", "同事N", "同事O", "同事P", "同事Q", "同事R", "同事S", "同事T"] },
+            { table: "17", guests: ["好友A", "好友B", "好友C", "好友D", "好友E", "好友F", "好友G", "好友H", "好友I", "好友J"] },
+            { table: "18", guests: ["好友K", "好友L", "好友M", "好友N", "好友O", "好友P", "好友Q", "好友R", "好友S", "好友T"] },
+            { table: "19", guests: ["机动贵宾1", "机动贵宾2", "机动贵宾3", "机动贵宾4", "机动贵宾5", "机动贵宾6", "机动贵宾7", "机动贵宾8", "机动贵宾9", "机动贵宾10"] },
+            { table: "20", guests: ["主摄影师", "副摄影师", "摄像师A", "摄像师B", "跟妆师", "司仪", "现场督导", "音响师", "灯光师", "宴会统筹"] }
         ];
 
         function querySeat() {
@@ -384,9 +376,7 @@
                     if (g.toLowerCase() === inputVal.toLowerCase() || (inputVal.length >= 2 && g.includes(inputVal))) {
                         found = {
                             matchedName: g,
-                            table: t.table,
-                            name: t.name,
-                            location: t.location
+                            table: t.table
                         };
                         break;
                     }
@@ -397,8 +387,6 @@
             if (found) {
                 document.getElementById('resGuestName').textContent = found.matchedName;
                 document.getElementById('resTableNum').textContent = found.table;
-                document.getElementById('resTableName').textContent = found.name;
-                document.getElementById('resLocationHint').innerHTML = `📍 方位指引：<strong>${found.location}</strong>。宴会厅已设桌号立牌，入席若有疑问可联系迎宾人员。`;
                 resultBox.style.display = 'block';
                 notFoundBox.style.display = 'none';
             } else {
