@@ -35,42 +35,39 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            padding: 24px 20px;
+            justify-content: flex-start;
+            padding: 24px 16px 60px;
             position: relative;
-            overflow-x: hidden;
         }
 
-        /* 森林角落植物点缀 (SVG) */
+        /* 森林角落植物点缀 */
         .corner-leaf {
             position: fixed;
             pointer-events: none;
             z-index: 0;
             opacity: 0.2;
-            width: 120px;
-            height: 120px;
+            width: 110px;
+            height: 110px;
         }
         .corner-leaf-top-left { top: -10px; left: -10px; }
         .corner-leaf-top-right { top: -10px; right: -10px; transform: scaleX(-1); }
         .corner-leaf-bottom-left { bottom: -10px; left: -10px; transform: scaleY(-1); }
         .corner-leaf-bottom-right { bottom: -10px; right: -10px; transform: scale(-1, -1); }
 
-        /* 主体卡片容器 */
         .main-card {
             width: 100%;
-            max-width: 440px;
-            background: rgba(255, 255, 255, 0.92);
+            max-width: 460px;
+            background: rgba(255, 255, 255, 0.94);
             backdrop-filter: blur(12px);
             border: 1px solid var(--border-color);
             border-radius: 20px;
-            padding: 36px 26px 30px;
+            padding: 30px 20px 26px;
             box-shadow: 0 10px 30px rgba(26, 49, 35, 0.06);
             text-align: center;
             position: relative;
             z-index: 1;
         }
 
-        /* 顶部标题区 */
         .en-title {
             font-size: 11px;
             color: var(--sage-green);
@@ -96,7 +93,7 @@
         }
 
         .branch-icon {
-            width: 28px;
+            width: 26px;
             height: 14px;
             fill: var(--gold-accent);
             opacity: 0.85;
@@ -111,32 +108,31 @@
         }
 
         .leaf-divider {
-            margin: 16px auto 26px;
+            margin: 14px auto 22px;
             color: var(--sage-green);
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
             opacity: 0.55;
-            font-size: 14px;
+            font-size: 13px;
         }
 
         .leaf-divider::before, .leaf-divider::after {
             content: "";
-            width: 45px;
+            width: 40px;
             height: 1px;
             background: linear-gradient(90deg, transparent, var(--gold-accent), transparent);
         }
 
-        /* 搜索输入与按钮 */
         .search-wrapper {
             position: relative;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
         }
 
         .search-input {
             width: 100%;
-            padding: 15px 18px;
+            padding: 14px 18px;
             font-size: 16px;
             border: 1.5px solid var(--sage-green);
             border-radius: 30px;
@@ -155,9 +151,9 @@
         }
 
         .search-btn {
-            margin-top: 14px;
+            margin-top: 12px;
             width: 100%;
-            padding: 14px 20px;
+            padding: 13px 20px;
             background: linear-gradient(135deg, var(--forest-dark), var(--forest-deep));
             color: #FFFFFF;
             border: none;
@@ -172,27 +168,25 @@
 
         .search-btn:active {
             transform: scale(0.98);
-            opacity: 0.9;
         }
 
-        /* 查询结果展示区 (默认隐藏) */
         .result-container {
             display: none;
-            margin-top: 24px;
-            padding-top: 20px;
+            margin-top: 22px;
+            padding-top: 18px;
             border-top: 1px dashed var(--border-color);
             animation: fadeIn 0.4s ease forwards;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(8px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         .guest-greeting {
             font-size: 14px;
             color: var(--text-muted);
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
 
         .guest-name-tag {
@@ -205,7 +199,7 @@
             background: linear-gradient(180deg, #FFFFFF, #F7FAF8);
             border: 1.5px solid var(--gold-accent);
             border-radius: 16px;
-            padding: 24px 16px;
+            padding: 20px 16px;
             margin-bottom: 16px;
             box-shadow: 0 6px 18px rgba(184, 151, 88, 0.12);
         }
@@ -216,27 +210,139 @@
             color: var(--gold-accent);
             text-transform: uppercase;
             font-weight: 600;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
         .table-display {
-            font-size: 34px;
+            font-size: 32px;
             font-weight: 700;
             color: var(--forest-deep);
             letter-spacing: 2px;
-            margin: 4px 0;
         }
 
-        .seat-location-hint {
+        /* 宴会厅平面图容器 (匹配现场布局) */
+        .floor-plan-card {
+            background: #FDFCF9;
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 14px 10px 18px;
+            margin-top: 16px;
+            position: relative;
+        }
+
+        .plan-title {
             font-size: 12px;
-            color: var(--text-muted);
-            background: #F4F7F4;
-            padding: 10px 14px;
-            border-radius: 8px;
-            line-height: 1.6;
+            color: var(--forest-dark);
+            letter-spacing: 1px;
+            font-weight: 600;
+            margin-bottom: 10px;
         }
 
-        /* 错误未查到状态 */
+        .stage-box {
+            background: #EDE6DC;
+            border: 1px solid #D6C7B2;
+            color: #7D6B56;
+            font-size: 12px;
+            padding: 6px 0;
+            border-radius: 6px;
+            width: 70%;
+            margin: 0 auto 12px;
+            letter-spacing: 4px;
+            font-weight: 500;
+        }
+
+        .plan-body {
+            display: flex;
+            justify-content: space-between;
+            align-items: stretch;
+            position: relative;
+        }
+
+        .col-left, .col-right {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 38%;
+        }
+
+        .table-row-pair {
+            display: flex;
+            justify-content: space-between;
+            gap: 6px;
+        }
+
+        .seat-circle {
+            flex: 1;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            border: 1.5px solid #CCD8D0;
+            background: #FFFFFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: #4A564F;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        /* 选中的桌位呼吸闪烁 */
+        .seat-circle.target-active {
+            background: var(--gold-accent) !important;
+            color: #FFFFFF !important;
+            border-color: #967438 !important;
+            font-weight: 700 !important;
+            transform: scale(1.18);
+            box-shadow: 0 0 14px rgba(184, 151, 88, 0.7);
+            animation: pulseGlow 1.4s infinite alternate;
+            z-index: 5;
+        }
+
+        @keyframes pulseGlow {
+            from { box-shadow: 0 0 6px rgba(184, 151, 88, 0.4); }
+            to { box-shadow: 0 0 16px rgba(184, 151, 88, 0.9); }
+        }
+
+        /* 中间通道 (T台) */
+        .center-aisle {
+            width: 22%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #B5A898;
+            font-size: 11px;
+            letter-spacing: 2px;
+            border-left: 1px dashed #E2DACF;
+            border-right: 1px dashed #E2DACF;
+            background: repeating-linear-gradient(45deg, transparent, transparent 6px, rgba(226, 218, 207, 0.25) 6px, rgba(226, 218, 207, 0.25) 12px);
+            margin: 0 4px;
+            border-radius: 8px;
+        }
+
+        .aisle-text {
+            writing-mode: vertical-lr;
+            letter-spacing: 4px;
+        }
+
+        .entrance-bar {
+            margin-top: 14px;
+            font-size: 11px;
+            color: #8C9990;
+            letter-spacing: 2px;
+        }
+
+        /* 查看手绘大图按钮 */
+        .view-photo-btn {
+            display: inline-block;
+            margin-top: 14px;
+            font-size: 12px;
+            color: var(--forest-dark);
+            text-decoration: underline;
+            cursor: pointer;
+            opacity: 0.85;
+        }
+
         .not-found-box {
             display: none;
             margin-top: 20px;
@@ -250,12 +356,29 @@
             animation: fadeIn 0.3s ease forwards;
         }
 
-        /* 底部落款 */
+        /* 图片弹窗 */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85);
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+        }
+        .modal img {
+            max-width: 100%;
+            max-height: 90vh;
+            border-radius: 8px;
+        }
+
         .footer-note {
             text-align: center;
             font-size: 11px;
             color: var(--sage-green);
-            margin-top: 24px;
+            margin-top: 22px;
             line-height: 1.8;
             opacity: 0.85;
             position: relative;
@@ -283,7 +406,7 @@
         <path d="M45,20 Q60,15 65,5 Q55,15 45,20 M55,42 Q75,50 82,38 Q68,46 55,42 M22,65 Q32,80 18,90 Q22,76 22,65" fill="#53705C"/>
     </svg>
 
-    <!-- 查询卡片主体 -->
+    <!-- 主卡片 -->
     <div class="main-card">
         <div class="en-title">WELCOME TO OUR POST-WEDDING CELEBRATION</div>
         <div class="header-title-box">
@@ -310,15 +433,76 @@
             <button class="search-btn" onclick="querySeat()">查询我的座位</button>
         </div>
 
-        <!-- 查询成功展示区 (仅显示桌号) -->
+        <!-- 查询成功展示区 -->
         <div id="resultBox" class="result-container">
             <div class="guest-greeting">尊敬的 <span id="resGuestName" class="guest-name-tag"></span> 贵宾：</div>
             <div class="seat-highlight-box">
                 <div class="seat-badge">YOUR SEAT</div>
                 <div class="table-display">您在 <span id="resTableNum" style="color:var(--gold-accent);">--</span> 号桌</div>
             </div>
-            <div class="seat-location-hint">
-                📍 宴会厅内已设置相应桌号立牌，入席若有疑问可联系现场迎宾人员。
+
+            <!-- 暮光森林 20桌现场排布平面图 -->
+            <div class="floor-plan-card">
+                <div class="plan-title">❖ 暮光森林 · 宴会厅平面分布 ❖</div>
+                <div class="stage-banner stage-box">舞 台</div>
+                
+                <div class="plan-body">
+                    <!-- 左侧区域：外侧 2,5,7,9,11 | 内侧 1,3,6,8,10 -->
+                    <div class="col-left">
+                        <div class="table-row-pair">
+                            <div class="seat-circle" id="seat-2">2号</div>
+                            <div class="seat-circle" id="seat-1">1号</div>
+                        </div>
+                        <div class="table-row-pair">
+                            <div class="seat-circle" id="seat-5">5号</div>
+                            <div class="seat-circle" id="seat-3">3号</div>
+                        </div>
+                        <div class="table-row-pair">
+                            <div class="seat-circle" id="seat-7">7号</div>
+                            <div class="seat-circle" id="seat-6">6号</div>
+                        </div>
+                        <div class="table-row-pair">
+                            <div class="seat-circle" id="seat-9">9号</div>
+                            <div class="seat-circle" id="seat-8">8号</div>
+                        </div>
+                        <div class="table-row-pair">
+                            <div class="seat-circle" id="seat-11">11号</div>
+                            <div class="seat-circle" id="seat-10">10号</div>
+                        </div>
+                    </div>
+
+                    <!-- 中间 T台通道 -->
+                    <div class="center-aisle">
+                        <span class="aisle-text">T 台 通 道</span>
+                    </div>
+
+                    <!-- 右侧区域：内侧 12,15,17,19,21 | 外侧 13,16,18,20,22 -->
+                    <div class="col-right">
+                        <div class="table-row-pair">
+                            <div class="seat-circle" id="seat-12">12号</div>
+                            <div class="seat-circle" id="seat-13">13号</div>
+                        </div>
+                        <div class="table-row-pair">
+                            <div class="seat-circle" id="seat-15">15号</div>
+                            <div class="seat-circle" id="seat-16">16号</div>
+                        </div>
+                        <div class="table-row-pair">
+                            <div class="seat-circle" id="seat-17">17号</div>
+                            <div class="seat-circle" id="seat-18">18号</div>
+                        </div>
+                        <div class="table-row-pair">
+                            <div class="seat-circle" id="seat-19">19号</div>
+                            <div class="seat-circle" id="seat-20">20号</div>
+                        </div>
+                        <div class="table-row-pair">
+                            <div class="seat-circle" id="seat-21">21号</div>
+                            <div class="seat-circle" id="seat-22">22号</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="entrance-bar">↑ 入口 / 签到处 ↑</div>
+                <div class="view-photo-btn" onclick="openModal()">🔍 点击查看手绘平面大图</div>
             </div>
         </div>
 
@@ -329,33 +513,38 @@
         </div>
     </div>
 
+    <!-- 弹窗查看原图 -->
+    <div id="imgModal" class="modal" onclick="closeModal()">
+        <img src="map.jpg" alt="暮光森林 20桌座位图" onerror="this.alt='请确保仓库已上传 map.jpg'">
+    </div>
+
     <div class="footer-note">
-        🌱 感谢您的莅临与见证 · 祝您度过愉快的中午
+        🌱 感谢您的莅临与见证 · 祝您度过愉快的夜晚
     </div>
 
     <script>
-        // 20桌数据名单（每桌10人，替换这里的姓名即可）
+        // 严格对应图纸的 20 桌（避开 4 和 14）
         const seatingData = [
-            { table: "01", guests: ["新郎父母", "新郎祖父母", "至亲叔舅", "至亲姑姨", "至亲长辈A", "至亲长辈B", "至亲长辈C", "至亲长辈D", "伴郎代表", "主宾代表A"] },
-            { table: "02", guests: ["新娘父母", "新娘祖父母", "至亲舅舅", "至亲阿姨", "至亲长辈E", "至亲长辈F", "至亲长辈G", "至亲长辈H", "伴娘代表", "主宾代表B"] },
-            { table: "03", guests: ["王大爷", "李大妈", "王伯伯", "张婶婶", "赵叔叔", "孙阿姨", "周伯父", "吴伯母", "郑爷爷", "钱奶奶"] },
-            { table: "04", guests: ["陈大伯", "林阿姨", "黄舅舅", "刘舅妈", "何叔叔", "许姑姑", "韩伯伯", "邓阿姨", "冯爷爷", "宋奶奶"] },
-            { table: "05", guests: ["堂哥A", "堂嫂A", "堂弟A", "堂妹A", "表哥A", "表嫂A", "表弟A", "表妹A", "侄子A", "侄女A"] },
-            { table: "06", guests: ["表哥B", "表嫂B", "表姐B", "表妹B", "堂弟B", "堂妹B", "舅表兄", "舅表妹", "外甥A", "外甥女A"] },
-            { table: "07", guests: ["张建国", "李秀英", "王志强", "刘海燕", "陈勇", "杨丽", "赵明", "孙敏", "周涛", "吴静"] },
-            { table: "08", guests: ["黄国强", "徐红", "朱文", "胡秀兰", "高飞", "林芳", "马伟", "何玉英", "罗斌", "郭萍"] },
-            { table: "09", guests: ["李雷", "韩梅梅", "刘星", "夏雨", "林冲", "武松", "鲁智深", "杨志", "花荣", "柴进"] },
-            { table: "10", guests: ["沈佳宜", "胡一菲", "陈美嘉", "唐悠悠", "林宛瑜", "顾里", "林萧", "南湘", "唐宛如", "甄嬛"] },
-            { table: "11", guests: ["张伟", "李强", "王磊", "刘洋", "陈杰", "杨洋", "赵杰", "孙强", "周杰", "吴磊"] },
-            { table: "12", guests: ["王芳", "李娜", "张敏", "刘艳", "陈晨", "杨静", "赵婷", "孙莉", "周丽", "吴英"] },
-            { table: "13", guests: ["Alex", "Bob", "Charlie", "David", "Eric", "Frank", "George", "Henry", "Ian", "Jack"] },
-            { table: "14", guests: ["Alice", "Bella", "Chloe", "Daisy", "Emily", "Fiona", "Grace", "Helen", "Ivy", "Judy"] },
-            { table: "15", guests: ["同事A", "同事B", "同事C", "同事D", "同事E", "同事F", "同事G", "同事H", "同事I", "同事J"] },
-            { table: "16", guests: ["同事K", "同事L", "同事M", "同事N", "同事O", "同事P", "同事Q", "同事R", "同事S", "同事T"] },
-            { table: "17", guests: ["好友A", "好友B", "好友C", "好友D", "好友E", "好友F", "好友G", "好友H", "好友I", "好友J"] },
-            { table: "18", guests: ["好友K", "好友L", "好友M", "好友N", "好友O", "好友P", "好友Q", "好友R", "好友S", "好友T"] },
-            { table: "19", guests: ["机动贵宾1", "机动贵宾2", "机动贵宾3", "机动贵宾4", "机动贵宾5", "机动贵宾6", "机动贵宾7", "机动贵宾8", "机动贵宾9", "机动贵宾10"] },
-            { table: "20", guests: ["主摄影师", "副摄影师", "摄像师A", "摄像师B", "跟妆师", "司仪", "现场督导", "音响师", "灯光师", "宴会统筹"] }
+            { table: "1", guests: ["嘉宾1", "嘉宾2", "嘉宾3", "嘉宾4", "嘉宾5", "嘉宾6", "嘉宾7", "嘉宾8", "嘉宾9", "嘉宾10"] },
+            { table: "2", guests: ["张伟", "李强", "王磊", "刘洋", "陈杰", "杨洋", "赵杰", "孙强", "周杰", "吴磊"] },
+            { table: "3", guests: ["王芳", "李娜", "张敏", "刘艳", "陈晨", "杨静", "赵婷", "孙莉", "周丽", "吴英"] },
+            { table: "5", guests: ["嘉宾A", "嘉宾B", "嘉宾C", "嘉宾D", "嘉宾E", "嘉宾F", "嘉宾G", "嘉宾H", "嘉宾I", "嘉宾J"] },
+            { table: "6", guests: ["张建国", "李秀英", "王志强", "刘海燕", "陈勇", "杨丽", "赵明", "孙敏", "周涛", "吴静"] },
+            { table: "7", guests: ["黄国强", "徐红", "朱文", "胡秀兰", "高飞", "林芳", "马伟", "何玉英", "罗斌", "郭萍"] },
+            { table: "8", guests: ["李雷", "韩梅梅", "刘星", "夏雨", "林冲", "武松", "鲁智深", "杨志", "花荣", "柴进"] },
+            { table: "9", guests: ["沈佳宜", "胡一菲", "陈美嘉", "唐悠悠", "林宛瑜", "顾里", "林萧", "南湘", "唐宛如", "甄嬛"] },
+            { table: "10", guests: ["王大爷", "李大妈", "王伯伯", "张婶婶", "赵叔叔", "孙阿姨", "周伯父", "吴伯母", "郑爷爷", "钱奶奶"] },
+            { table: "11", guests: ["陈大伯", "林阿姨", "黄舅舅", "刘舅妈", "何叔叔", "许姑姑", "韩伯伯", "邓阿姨", "冯爷爷", "宋奶奶"] },
+            { table: "12", guests: ["堂哥A", "堂嫂A", "堂弟A", "堂妹A", "表哥A", "表嫂A", "表弟A", "表妹A", "侄子A", "侄女A"] },
+            { table: "13", guests: ["表哥B", "表嫂B", "表姐B", "表妹B", "堂弟B", "堂妹B", "舅表兄", "舅表妹", "外甥A", "外甥女A"] },
+            { table: "15", guests: ["Alex", "Bob", "Charlie", "David", "Eric", "Frank", "George", "Henry", "Ian", "Jack"] },
+            { table: "16", guests: ["Alice", "Bella", "Chloe", "Daisy", "Emily", "Fiona", "Grace", "Helen", "Ivy", "Judy"] },
+            { table: "17", guests: ["同事A", "同事B", "同事C", "同事D", "同事E", "同事F", "同事G", "同事H", "同事I", "同事J"] },
+            { table: "18", guests: ["同事K", "同事L", "同事M", "同事N", "同事O", "同事P", "同事Q", "同事R", "同事S", "同事T"] },
+            { table: "19", guests: ["好友A", "好友B", "好友C", "好友D", "好友E", "好友F", "好友G", "好友H", "好友I", "好友J"] },
+            { table: "20", guests: ["好友K", "好友L", "好友M", "好友N", "好友O", "好友P", "好友Q", "好友R", "好友S", "好友T"] },
+            { table: "21", guests: ["机动贵宾1", "机动贵宾2", "机动贵宾3", "机动贵宾4", "机动贵宾5", "机动贵宾6", "机动贵宾7", "机动贵宾8", "机动贵宾9", "机动贵宾10"] },
+            { table: "22", guests: ["工作团队1", "工作团队2", "工作团队3", "工作团队4", "工作团队5", "工作团队6", "工作团队7", "工作团队8", "工作团队9", "工作团队10"] }
         ];
 
         function querySeat() {
@@ -368,9 +557,11 @@
                 return;
             }
 
+            // 清理上一轮选中的高亮
+            document.querySelectorAll('.seat-circle').forEach(el => el.classList.remove('target-active'));
+
             let found = null;
 
-            // 匹配宾客姓名
             for (let t of seatingData) {
                 for (let g of t.guests) {
                     if (g.toLowerCase() === inputVal.toLowerCase() || (inputVal.length >= 2 && g.includes(inputVal))) {
@@ -387,20 +578,32 @@
             if (found) {
                 document.getElementById('resGuestName').textContent = found.matchedName;
                 document.getElementById('resTableNum').textContent = found.table;
+                
+                // 平面图上对应的圆圈高亮闪烁
+                const targetSeatEl = document.getElementById('seat-' + found.table);
+                if (targetSeatEl) {
+                    targetSeatEl.classList.add('target-active');
+                }
+
                 resultBox.style.display = 'block';
                 notFoundBox.style.display = 'none';
+
+                // 自动平滑滚动到结果卡片
+                setTimeout(() => {
+                    resultBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, 100);
             } else {
                 resultBox.style.display = 'none';
                 notFoundBox.style.display = 'block';
             }
         }
 
-        // 支持敲回车键查询
         document.getElementById('guestInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                querySeat();
-            }
+            if (e.key === 'Enter') querySeat();
         });
+
+        function openModal() { document.getElementById('imgModal').style.display = 'flex'; }
+        function closeModal() { document.getElementById('imgModal').style.display = 'none'; }
     </script>
 </body>
 </html>
