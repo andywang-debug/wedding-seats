@@ -40,7 +40,7 @@
             position: relative;
         }
 
-        /* 森林角落植物点缀 */
+        /* 森林植物角标 */
         .corner-leaf {
             position: fixed;
             pointer-events: none;
@@ -220,7 +220,7 @@
             letter-spacing: 2px;
         }
 
-        /* 宴会厅平面图容器 (匹配现场布局) */
+        /* 暮光森林现场布局 */
         .floor-plan-card {
             background: #FDFCF9;
             border: 1px solid var(--border-color);
@@ -286,7 +286,6 @@
             transition: all 0.3s ease;
         }
 
-        /* 选中的桌位呼吸闪烁 */
         .seat-circle.target-active {
             background: var(--gold-accent) !important;
             color: #FFFFFF !important;
@@ -303,7 +302,6 @@
             to { box-shadow: 0 0 16px rgba(184, 151, 88, 0.9); }
         }
 
-        /* 中间通道 (T台) */
         .center-aisle {
             width: 22%;
             display: flex;
@@ -332,7 +330,6 @@
             letter-spacing: 2px;
         }
 
-        /* 查看手绘大图按钮 */
         .view-photo-btn {
             display: inline-block;
             margin-top: 14px;
@@ -356,7 +353,6 @@
             animation: fadeIn 0.3s ease forwards;
         }
 
-        /* 图片弹窗 */
         .modal {
             display: none;
             position: fixed;
@@ -388,7 +384,6 @@
 </head>
 <body>
 
-    <!-- 四角植物藤蔓装饰 -->
     <svg class="corner-leaf corner-leaf-top-left" viewBox="0 0 100 100">
         <path d="M0,0 Q30,60 100,70 Q40,30 0,0 M15,15 Q45,25 60,10 M25,35 Q60,55 75,30 M10,40 Q30,70 10,95" fill="none" stroke="#274734" stroke-width="2.5" stroke-linecap="round"/>
         <path d="M45,20 Q60,15 65,5 Q55,15 45,20 M55,42 Q75,50 82,38 Q68,46 55,42 M22,65 Q32,80 18,90 Q22,76 22,65" fill="#53705C"/>
@@ -406,7 +401,6 @@
         <path d="M45,20 Q60,15 65,5 Q55,15 45,20 M55,42 Q75,50 82,38 Q68,46 55,42 M22,65 Q32,80 18,90 Q22,76 22,65" fill="#53705C"/>
     </svg>
 
-    <!-- 主卡片 -->
     <div class="main-card">
         <div class="en-title">WELCOME TO OUR POST-WEDDING CELEBRATION</div>
         <div class="header-title-box">
@@ -427,13 +421,11 @@
         <div class="subtitle">宴会座席指引</div>
         <div class="leaf-divider">🌿</div>
 
-        <!-- 搜索输入框 -->
         <div class="search-wrapper">
             <input type="text" id="guestInput" class="search-input" placeholder="请输入您的姓名查找座位" autocomplete="off">
             <button class="search-btn" onclick="querySeat()">查询我的座位</button>
         </div>
 
-        <!-- 查询成功展示区 -->
         <div id="resultBox" class="result-container">
             <div class="guest-greeting">尊敬的 <span id="resGuestName" class="guest-name-tag"></span> 贵宾：</div>
             <div class="seat-highlight-box">
@@ -441,13 +433,13 @@
                 <div class="table-display">您在 <span id="resTableNum" style="color:var(--gold-accent);">--</span> 号桌</div>
             </div>
 
-            <!-- 暮光森林 20桌现场排布平面图 -->
+            <!-- 暮光森林 20桌现场排布图 -->
             <div class="floor-plan-card">
                 <div class="plan-title">❖ 暮光森林 · 宴会厅平面分布 ❖</div>
                 <div class="stage-banner stage-box">舞 台</div>
                 
                 <div class="plan-body">
-                    <!-- 左侧区域：外侧 2,5,7,9,11 | 内侧 1,3,6,8,10 -->
+                    <!-- 左侧：外侧 2,5,7,9,11 | 内侧 1,3,6,8,10 -->
                     <div class="col-left">
                         <div class="table-row-pair">
                             <div class="seat-circle" id="seat-2">2号</div>
@@ -471,12 +463,11 @@
                         </div>
                     </div>
 
-                    <!-- 中间 T台通道 -->
                     <div class="center-aisle">
                         <span class="aisle-text">T 台 通 道</span>
                     </div>
 
-                    <!-- 右侧区域：内侧 12,15,17,19,21 | 外侧 13,16,18,20,22 -->
+                    <!-- 右侧：内侧 12,15,17,19,21 | 外侧 13,16,18,20,22 -->
                     <div class="col-right">
                         <div class="table-row-pair">
                             <div class="seat-circle" id="seat-12">12号</div>
@@ -506,24 +497,23 @@
             </div>
         </div>
 
-        <!-- 未查到提示 -->
         <div id="notFoundBox" class="not-found-box">
             抱歉，未查询到该姓名的座席信息。<br>
             请确认姓名输入是否正确，或联系现场迎宾人员协助入席。
         </div>
     </div>
 
-    <!-- 弹窗查看原图 -->
     <div id="imgModal" class="modal" onclick="closeModal()">
-        <img src="map.jpg" alt="暮光森林 20桌座位图" onerror="this.alt='请确保仓库已上传 map.jpg'">
+        <img src="map.jpg" alt="暮光森林 20桌座位图" onerror="this.alt='请确保仓库根目录已上传 map.jpg'">
     </div>
 
+    <!-- 底部落款文案修改 -->
     <div class="footer-note">
         🌱 感谢您的莅临与见证 · 祝您度过愉快的中午
     </div>
 
     <script>
-        // 严格对应图纸的 20 桌（避开 4 和 14）
+        // 根据表格精确录入的 20 桌真实名单
         const seatingData = [
             { table: "1", guests: ["王廷睿", "吴唯诚", "爷爷", "婆婆", "阿婆", "大伯", "大妈", "大舅舅", "小舅舅", "爸爸", "妈妈"] },
             { table: "2", guests: ["万寿平", "万颜平", "万小平", "万丫凤", "万赛凤"] },
@@ -532,15 +522,15 @@
             { table: "6", guests: ["吴丽萍", "王红", "万雪婷", "汤洪源", "沈溢"] },
             { table: "7", guests: ["王春红", "陈玉辉", "陈玉康", "王波", "熊雨声"] },
             { table: "8", guests: ["陈建琴", "高礼成", "袁文娟", "谢冰", "幸玲", "何建梅"] },
-            { table: "9", guests: ["刘琳", "陈敏", "徐红英", "辜芬兰", "胡姝颖", "陈建英", "卢韧珍", "李东红", "裘小妹", "万学峰"] },
-            { table: "10", guests: ["梁青", "李燕琴", "付苏红", "杨军勤", "辜向英", "胡莎莎", "邓赟"] },
-            { table: "11", guests: ["陈大伯", "林阿姨", "黄舅舅", "刘舅妈", "何叔叔", "许姑姑", "韩伯伯", "邓阿姨", "冯爷爷", "宋奶奶"] },
-            { table: "12", guests: ["堂哥A", "堂嫂A", "堂弟A", "堂妹A", "表哥A", "表嫂A", "表弟A", "表妹A", "侄子A", "侄女A"] },
-            { table: "13", guests: ["表哥B", "表嫂B", "表姐B", "表妹B", "堂弟B", "堂妹B", "舅表兄", "舅表妹", "外甥A", "外甥女A"] },
-            { table: "15", guests: ["Alex", "Bob", "Charlie", "David", "Eric", "Frank", "George", "Henry", "Ian", "Jack"] },
-            { table: "16", guests: ["Alice", "Bella", "Chloe", "Daisy", "Emily", "Fiona", "Grace", "Helen", "Ivy", "Judy"] },
+            { table: "9", guests: ["刘琳", "陈敏", "徐红英", "辜芬兰", "胡姝颖", "陈建英", "卢轫珍", "李东红", "裘小妹", "万学峰"] },
+            { table: "10", guests: ["梁青", "李燕琴", "付苏红", "杨军勤", "辜向英", "胡莎莎", "邓赟", "杨华平"] },
+            { table: "11", guests: ["胡敏华", "喻飞雪", "周志金", "周亚岚", "赵丽", "邹龙珍", "杨洪兵", "沈萍", "展悦"] },
+            { table: "12", guests: ["吴恒", "赵琪", "赵群", "陈白洁", "吴虎", "姜凌云", "吴寒梅", "徐海军", "吴昊", "赵静", "徐楚祎", "司机"] },
+            { table: "13", guests: ["林芳", "常天骄", "高诗雨", "陈丹丹", "黄书文", "韩星屹", "朱雪莹", "尹鹏宇", "林珍", "薛源", "徐秋冉", "吴思远"] },
+            { table: "15", guests: ["吴唯真", "武文通", "赵逸凡", "周银", "马怡斐", "朱驭希", "朱伟", "吴思宁", "潘泽林", "赵梓竹", "许国祯"] },
+            { table: "16", guests: ["徐贤达", "周真毅", "余秋圆", "万渠成", "詹玉阳", "王坤沁"] },
             { table: "17", guests: ["杨小文", "张近静", "张魁忠", "张学学", "陈文辉", "吴武姿", "艾勇", "王春红", "王登峰", "胡凤鸣"] },
-            { table: "18", guests: ["同事K", "同事L", "同事M", "同事N", "同事O", "同事P", "同事Q", "同事R", "同事S", "同事T"] },
+            { table: "18", guests: ["陈新洁", "朱恩志", "TIANA", "董展辰", "张淼", "龚汉辉", "万超"] },
             { table: "19", guests: ["朱云峰", "罗来金", "万晓斌", "王超", "付小明", "邓小军", "万卫斌", "李长如"] },
             { table: "20", guests: ["邓小梅", "文晓懿", "刘伟军", "何淑雅", "虞佳", "周丹", "徐彪", "王海斌"] },
             { table: "21", guests: ["艾心悦", "万紫云", "刘菁菁", "邓小梅女儿", "陈翰翔"] },
@@ -557,7 +547,6 @@
                 return;
             }
 
-            // 清理上一轮选中的高亮
             document.querySelectorAll('.seat-circle').forEach(el => el.classList.remove('target-active'));
 
             let found = null;
@@ -579,7 +568,6 @@
                 document.getElementById('resGuestName').textContent = found.matchedName;
                 document.getElementById('resTableNum').textContent = found.table;
                 
-                // 平面图上对应的圆圈高亮闪烁
                 const targetSeatEl = document.getElementById('seat-' + found.table);
                 if (targetSeatEl) {
                     targetSeatEl.classList.add('target-active');
@@ -588,7 +576,6 @@
                 resultBox.style.display = 'block';
                 notFoundBox.style.display = 'none';
 
-                // 自动平滑滚动到结果卡片
                 setTimeout(() => {
                     resultBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                 }, 100);
