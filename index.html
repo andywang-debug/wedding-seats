@@ -220,12 +220,12 @@
             letter-spacing: 2px;
         }
 
-        /* 暮光森林现场布局 */
+        /* 调整后的宴会厅排布图（按 Excel 空间排布） */
         .floor-plan-card {
             background: #FDFCF9;
             border: 1px solid var(--border-color);
             border-radius: 14px;
-            padding: 14px 10px 18px;
+            padding: 16px 10px 18px;
             margin-top: 16px;
             position: relative;
         }
@@ -245,12 +245,29 @@
             font-size: 12px;
             padding: 6px 0;
             border-radius: 6px;
-            width: 70%;
+            width: 72%;
             margin: 0 auto 12px;
             letter-spacing: 4px;
             font-weight: 500;
         }
 
+        /* 布局框架 */
+        .plan-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        /* 第一排（靠舞台主桌）：1号 与 12号 */
+        .front-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 32px;
+            margin-bottom: 4px;
+        }
+
+        /* 中部/后部主体 */
         .plan-body {
             display: flex;
             justify-content: space-between;
@@ -262,13 +279,13 @@
             display: flex;
             flex-direction: column;
             gap: 10px;
-            width: 38%;
+            width: 40%;
         }
 
         .table-row-pair {
             display: flex;
             justify-content: space-between;
-            gap: 6px;
+            gap: 8px;
         }
 
         .seat-circle {
@@ -286,6 +303,15 @@
             transition: all 0.3s ease;
         }
 
+        .front-seat {
+            width: 52px;
+            height: 52px;
+            flex: none;
+            border-color: var(--gold-accent);
+            background: #FCFAF5;
+        }
+
+        /* 选中高亮动画 */
         .seat-circle.target-active {
             background: var(--gold-accent) !important;
             color: #FFFFFF !important;
@@ -303,7 +329,7 @@
         }
 
         .center-aisle {
-            width: 22%;
+            width: 18%;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -314,13 +340,22 @@
             border-left: 1px dashed #E2DACF;
             border-right: 1px dashed #E2DACF;
             background: repeating-linear-gradient(45deg, transparent, transparent 6px, rgba(226, 218, 207, 0.25) 6px, rgba(226, 218, 207, 0.25) 12px);
-            margin: 0 4px;
+            margin: 0 2px;
             border-radius: 8px;
         }
 
         .aisle-text {
             writing-mode: vertical-lr;
             letter-spacing: 4px;
+        }
+
+        /* 最后靠近大门：10号 与 22号 */
+        .back-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 32px;
+            margin-top: 4px;
         }
 
         .entrance-bar {
@@ -433,62 +468,70 @@
                 <div class="table-display">您在 <span id="resTableNum" style="color:var(--gold-accent);">--</span> 号桌</div>
             </div>
 
-            <!-- 暮光森林 20桌现场排布图 -->
+            <!-- 严格按照 Excel 结构分布的宴会厅平面图 -->
             <div class="floor-plan-card">
                 <div class="plan-title">❖ 暮光森林 · 宴会厅平面分布 ❖</div>
                 <div class="stage-banner stage-box">舞 台</div>
                 
-                <div class="plan-body">
-                    <!-- 左侧：外侧 2,5,7,9,11 | 内侧 1,3,6,8,10 -->
-                    <div class="col-left">
-                        <div class="table-row-pair">
-                            <div class="seat-circle" id="seat-2">2号</div>
-                            <div class="seat-circle" id="seat-1">1号</div>
+                <div class="plan-layout">
+                    <!-- 靠舞台前方：1号与12号主桌 -->
+                    <div class="front-row">
+                        <div class="seat-circle front-seat" id="seat-1">1号</div>
+                        <div class="seat-circle front-seat" id="seat-12">12号</div>
+                    </div>
+
+                    <!-- 中间与后排主体结构 -->
+                    <div class="plan-body">
+                        <!-- 左侧：5|2, 7|3, 9|6, 11|8 -->
+                        <div class="col-left">
+                            <div class="table-row-pair">
+                                <div class="seat-circle" id="seat-5">5号</div>
+                                <div class="seat-circle" id="seat-2">2号</div>
+                            </div>
+                            <div class="table-row-pair">
+                                <div class="seat-circle" id="seat-7">7号</div>
+                                <div class="seat-circle" id="seat-3">3号</div>
+                            </div>
+                            <div class="table-row-pair">
+                                <div class="seat-circle" id="seat-9">9号</div>
+                                <div class="seat-circle" id="seat-6">6号</div>
+                            </div>
+                            <div class="table-row-pair">
+                                <div class="seat-circle" id="seat-11">11号</div>
+                                <div class="seat-circle" id="seat-8">8号</div>
+                            </div>
                         </div>
-                        <div class="table-row-pair">
-                            <div class="seat-circle" id="seat-5">5号</div>
-                            <div class="seat-circle" id="seat-3">3号</div>
+
+                        <!-- T台通道 -->
+                        <div class="center-aisle">
+                            <span class="aisle-text">T 台 通 道</span>
                         </div>
-                        <div class="table-row-pair">
-                            <div class="seat-circle" id="seat-7">7号</div>
-                            <div class="seat-circle" id="seat-6">6号</div>
-                        </div>
-                        <div class="table-row-pair">
-                            <div class="seat-circle" id="seat-9">9号</div>
-                            <div class="seat-circle" id="seat-8">8号</div>
-                        </div>
-                        <div class="table-row-pair">
-                            <div class="seat-circle" id="seat-11">11号</div>
-                            <div class="seat-circle" id="seat-10">10号</div>
+
+                        <!-- 右侧：15|13, 17|16, 19|18, 21|20 -->
+                        <div class="col-right">
+                            <div class="table-row-pair">
+                                <div class="seat-circle" id="seat-15">15号</div>
+                                <div class="seat-circle" id="seat-13">13号</div>
+                            </div>
+                            <div class="table-row-pair">
+                                <div class="seat-circle" id="seat-17">17号</div>
+                                <div class="seat-circle" id="seat-16">16号</div>
+                            </div>
+                            <div class="table-row-pair">
+                                <div class="seat-circle" id="seat-19">19号</div>
+                                <div class="seat-circle" id="seat-18">18号</div>
+                            </div>
+                            <div class="table-row-pair">
+                                <div class="seat-circle" id="seat-21">21号</div>
+                                <div class="seat-circle" id="seat-20">20号</div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="center-aisle">
-                        <span class="aisle-text">T 台 通 道</span>
-                    </div>
-
-                    <!-- 右侧：内侧 12,15,17,19,21 | 外侧 13,16,18,20,22 -->
-                    <div class="col-right">
-                        <div class="table-row-pair">
-                            <div class="seat-circle" id="seat-12">12号</div>
-                            <div class="seat-circle" id="seat-13">13号</div>
-                        </div>
-                        <div class="table-row-pair">
-                            <div class="seat-circle" id="seat-15">15号</div>
-                            <div class="seat-circle" id="seat-16">16号</div>
-                        </div>
-                        <div class="table-row-pair">
-                            <div class="seat-circle" id="seat-17">17号</div>
-                            <div class="seat-circle" id="seat-18">18号</div>
-                        </div>
-                        <div class="table-row-pair">
-                            <div class="seat-circle" id="seat-19">19号</div>
-                            <div class="seat-circle" id="seat-20">20号</div>
-                        </div>
-                        <div class="table-row-pair">
-                            <div class="seat-circle" id="seat-21">21号</div>
-                            <div class="seat-circle" id="seat-22">22号</div>
-                        </div>
+                    <!-- 靠近入口后排：10号与22号 -->
+                    <div class="back-row">
+                        <div class="seat-circle front-seat" id="seat-10">10号</div>
+                        <div class="seat-circle front-seat" id="seat-22">22号</div>
                     </div>
                 </div>
 
@@ -512,7 +555,7 @@
     </div>
 
     <script>
-        // 5号桌新增“肖国全”的最新版名单
+        // 严格匹配最新 Excel 名单与桌号归属（包括 21 与 22 桌对调）
         const seatingData = [
             { table: "1", guests: ["王廷睿", "吴唯诚", "爷爷", "婆婆", "阿婆", "大伯", "大妈", "大舅舅", "小舅舅", "爸爸", "妈妈"] },
             { table: "2", guests: ["万寿平", "万颜平", "万小平", "万雅凤", "万赛凤"] },
@@ -532,8 +575,8 @@
             { table: "18", guests: ["陈新洁", "朱恩志", "蒋雪纯", "龚汉辉", "万超"] },
             { table: "19", guests: ["朱云峰", "罗来金", "万晓斌", "王超", "付晓明", "邓小军", "万卫斌", "李长如"] },
             { table: "20", guests: ["邓小梅", "文晓懿", "刘伟军", "何书雅", "虞佳", "周丹", "徐标", "王海斌"] },
-            { table: "21", guests: ["艾心悦", "万紫云", "刘菁菁", "邓小梅女儿", "陈翰翔", "曾皓泽", "王云钰"] },
-            { table: "22", guests: ["陈皓", "付雯", "陶军", "晏英干", "姜峰", "万亮", "李小兰", "梁明光", "刘蔚华", "经依群"] }
+            { table: "21", guests: ["陈皓", "付雯", "陶军", "晏英干", "姜峰", "万亮", "李小兰", "梁明光", "刘蔚华", "经依群"] },
+            { table: "22", guests: ["艾心悦", "万紫云", "刘菁菁", "邓小梅女儿", "陈翰翔", "曾皓泽", "王云钰"] }
         ];
 
         function querySeat() {
