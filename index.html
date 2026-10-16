@@ -220,7 +220,7 @@
             letter-spacing: 2px;
         }
 
-        /* 调整后的宴会厅排布图（按 Excel 空间排布） */
+        /* 宴会厅排布图 */
         .floor-plan-card {
             background: #FDFCF9;
             border: 1px solid var(--border-color);
@@ -251,14 +251,13 @@
             font-weight: 500;
         }
 
-        /* 布局框架 */
         .plan-layout {
             display: flex;
             flex-direction: column;
             gap: 10px;
         }
 
-        /* 第一排（靠舞台主桌）：1号 与 12号 */
+        /* 第一排（靠舞台主桌）：1号与12号 */
         .front-row {
             display: flex;
             justify-content: center;
@@ -267,7 +266,6 @@
             margin-bottom: 4px;
         }
 
-        /* 中部/后部主体 */
         .plan-body {
             display: flex;
             justify-content: space-between;
@@ -349,7 +347,7 @@
             letter-spacing: 4px;
         }
 
-        /* 最后靠近大门：10号 与 22号 */
+        /* 靠近入口后排：10号与22号 */
         .back-row {
             display: flex;
             justify-content: center;
@@ -365,16 +363,6 @@
             letter-spacing: 2px;
         }
 
-        .view-photo-btn {
-            display: inline-block;
-            margin-top: 14px;
-            font-size: 12px;
-            color: var(--forest-dark);
-            text-decoration: underline;
-            cursor: pointer;
-            opacity: 0.85;
-        }
-
         .not-found-box {
             display: none;
             margin-top: 20px;
@@ -386,23 +374,6 @@
             color: #9E5241;
             line-height: 1.6;
             animation: fadeIn 0.3s ease forwards;
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 999;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0,0,0,0.85);
-            align-items: center;
-            justify-content: center;
-            padding: 16px;
-        }
-        .modal img {
-            max-width: 100%;
-            max-height: 90vh;
-            border-radius: 8px;
         }
 
         .footer-note {
@@ -470,7 +441,7 @@
 
             <!-- 严格按照 Excel 结构分布的宴会厅平面图 -->
             <div class="floor-plan-card">
-                <div class="plan-title">❖ 暮光森林 · 宴会厅平面分布 ❖</div>
+                <div class="plan-title">❖ 宴会厅平面分布 ❖</div>
                 <div class="stage-banner stage-box">舞 台</div>
                 
                 <div class="plan-layout">
@@ -536,7 +507,6 @@
                 </div>
 
                 <div class="entrance-bar">↑ 入口 / 签到处 ↑</div>
-                <div class="view-photo-btn" onclick="openModal()">🔍 点击查看手绘平面大图</div>
             </div>
         </div>
 
@@ -546,16 +516,11 @@
         </div>
     </div>
 
-    <div id="imgModal" class="modal" onclick="closeModal()">
-        <img src="map.jpg" alt="暮光森林 20桌座位图" onerror="this.alt='请确保仓库根目录已上传 map.jpg'">
-    </div>
-
     <div class="footer-note">
         🌱 感谢您的莅临与见证 · 祝您度过愉快的中午
     </div>
 
     <script>
-        // 严格匹配最新 Excel 名单与桌号归属（包括 21 与 22 桌对调）
         const seatingData = [
             { table: "1", guests: ["王廷睿", "吴唯诚", "爷爷", "婆婆", "阿婆", "大伯", "大妈", "大舅舅", "小舅舅", "爸爸", "妈妈"] },
             { table: "2", guests: ["万寿平", "万颜平", "万小平", "万雅凤", "万赛凤"] },
@@ -630,9 +595,6 @@
         document.getElementById('guestInput').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') querySeat();
         });
-
-        function openModal() { document.getElementById('imgModal').style.display = 'flex'; }
-        function closeModal() { document.getElementById('imgModal').style.display = 'none'; }
     </script>
 </body>
 </html>
